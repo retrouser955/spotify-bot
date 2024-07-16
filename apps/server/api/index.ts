@@ -39,6 +39,8 @@ if (app.get('env') === 'production') {
 
 app.use(session(sess))
 
+app.get("/render/healthcheck", (_, res) => res.send("HEALTHY"))
+
 app.get("/auth", (_, res) => {
     res.redirect(`https://discord.com/oauth2/authorize?client_id=${process.env.DISCORD_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fdiscord&scope=identify`)
 })
