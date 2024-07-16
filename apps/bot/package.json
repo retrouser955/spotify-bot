@@ -1,0 +1,31 @@
+{
+  "name": "bot",
+  "packageManager": "yarn@4.3.1",
+  "version": "0.0.1",
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.53",
+    "axios": "^1.7.2",
+    "better-sqlite3": "^11.1.2",
+    "body-parser": "^1.20.2",
+    "canvacord": "^6.0.2",
+    "discord-api-types": "^0.37.92",
+    "dotenv": "^16.4.5",
+    "eris": "^0.17.2",
+    "eris-collect": "^1.1.1",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "quick.db": "^9.1.7"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1",
+    "@types/express": "^4",
+    "@types/node": "^20.14.10",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "cross-env NODE_ENV=\"development\" nodemon --exec \"tsc && node dist/index.js\" --ignore \"./dist/**/*\" --ext \"ts\"",
+    "start": "node dist/index.js"
+  }
+}
