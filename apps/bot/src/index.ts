@@ -32,10 +32,6 @@ client.on("ready", async () => {
     
         commands.set(command!.name, command!)
     }
-
-    await mongoose.connect(process.env.MONGO_URL)
-
-    console.log("MONGO DB: CONNECTED!")
 })
 
 client.on("interactionCreate", (ctx) => {
@@ -50,6 +46,11 @@ client.on("interactionCreate", (ctx) => {
         })
         cmd.execute(client, (ctx as Eris.CommandInteraction<Eris.TextableChannel>))
     }
+})
+
+mongoose.connect(process.env.MONGO_URL).then(() => {
+    console.log("MONGO DB: CONNECTED!")
+    return mongoose
 })
 
 client.connect()

@@ -3,8 +3,15 @@ import session from "express-session"
 import * as crypto from "node:crypto"
 import { default as axios } from "axios"
 import { config } from "dotenv"
+import auth from "connect-mongodb-session"
 
 config()
+
+const MongoDB = auth(session)
+const store = new MongoDB({
+    uri: process.env.MONGO_AUTH,
+    collection: "sessions"
+})
 
 const secret = crypto.randomBytes(16).toString()
 
@@ -30,6 +37,7 @@ let sess = {
     },
     saveUninitialized: false,
     resave: true,
+    store
 } satisfies session.SessionOptions
 
 if (app.get('env') === 'production') {
@@ -134,6 +142,7 @@ declare global {
             DISCORD_CALLBACK: string;
             DISCORD_ID: string;
             DISCORD_SECRET: string;
+            MONGO_AUTH: string;
         }
     }
 }
