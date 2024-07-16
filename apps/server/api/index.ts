@@ -121,7 +121,7 @@ declare module "express-session" {
     }
 }
 
-app.listen(3000, () => console.log("CONNECTED ON PORT: 3000"))
+app.listen(10000, () => console.log("CONNECTED ON PORT: 3000"))
 
 declare global {
     namespace NodeJS {
