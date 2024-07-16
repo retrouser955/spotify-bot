@@ -42,7 +42,7 @@ app.use(session(sess))
 app.get("/render/healthcheck", (_, res) => res.send("HEALTHY"))
 
 app.get("/auth", (_, res) => {
-    res.redirect(`https://discord.com/oauth2/authorize?client_id=${process.env.DISCORD_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fdiscord&scope=identify`)
+    res.redirect(`https://discord.com/oauth2/authorize?client_id=${process.env.DISCORD_ID}&response_type=code&redirect_uri=${encodeURIComponent(process.env.DISCORD_CALLBACK)}&scope=identify`)
 })
 
 app.get("/auth/discord", async (req, res) => {

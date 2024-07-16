@@ -35,7 +35,7 @@ export default class Link extends BaseCommand {
 
         const url = process.env.NODE_ENV === "development" ?
             "http://localhost:3000/auth" :
-            "https://example.com/auth"
+            process.env.AUTH_URL
 
         ctx.createMessage({
             embeds: [

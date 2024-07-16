@@ -65,6 +65,7 @@ declare global {
             MONGO_URL: string;
             AUTH_KEY: string;
             SPOTIFY_CALLBACK: string;
+            AUTH_URL: string;
         }
     }
 }
