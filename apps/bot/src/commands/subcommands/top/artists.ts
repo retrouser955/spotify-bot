@@ -69,7 +69,7 @@ export default class TopArtists extends BaseCommand {
         const data = await request.json()
 
         const embed: EmbedOptions = {
-            description: `**<:spotify:1036122539384119306> Your Top Artists**\n${data.items.map((v: any, i: number) => `**${i + 1}.** [${v.name}](${v.external_urls.spotify})`).join("\n")}`,
+            description: `**<:spotify:1264561367411720293> Your Top Artists**\n${data.items.map((v: any, i: number) => `**${i + 1}.** [${v.name}](${v.external_urls.spotify})`).join("\n")}`,
             color: 0xffffff,
             thumbnail: {
                 url: data.items[0].images[0].url

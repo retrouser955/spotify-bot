@@ -54,6 +54,10 @@ export default class TrackCommand extends BaseCommand {
             }
 
             const options: SelectMenuOptions[] = (tracks.items as any[]).map((v: any, i) => {
+                let desc = `By: ${(v.artists as any[]).map((v: any) => v.name as string).join(", ")}`
+
+                if(desc.length > 100) desc = `${desc.substring(0, 97)}...`
+
                 return {
                     label: v.name as string,
                     value: `${i}`,
@@ -74,7 +78,8 @@ export default class TrackCommand extends BaseCommand {
             } satisfies Eris.ActionRow
 
             const msg = await ctx.createFollowup({
-                components: [select]
+                components: [select],
+                embeds: [EmbedBuilder.infoEmbed("Choose one of the tracks below!")]
             })
 
             const values = await awaitComponentInteractions(client, {
@@ -131,6 +136,16 @@ export default class TrackCommand extends BaseCommand {
                             url: data.external_urls.spotify,
                             style: ButtonStyle.Link,
                             label: "Listen"
+                        },
+                        {
+                            type: ComponentType.Button,
+                            style: ButtonStyle.Secondary,
+                            label: "Recommendations",
+                            emoji: {
+                               id: "1264562222353617077",
+                               name: "info"
+                            },
+                            custom_id: `musistats-recommendations-${data.id}`
                         }
                     ]
                 }],
@@ -173,6 +188,16 @@ export default class TrackCommand extends BaseCommand {
                             url: json.external_urls.spotify,
                             style: ButtonStyle.Link,
                             label: "Listen"
+                        },
+                        {
+                            type: ComponentType.Button,
+                            style: ButtonStyle.Secondary,
+                            label: "Recommendations",
+                            emoji: {
+                               id: "1264562222353617077",
+                               name: "info"
+                            },
+                            custom_id: `musistats-recommendations-${json.id}`
                         }
                     ]
                 }]

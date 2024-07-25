@@ -1,15 +1,14 @@
-import { Client, CommandInteraction, TextableChannel } from "eris";
+import { Client, CommandInteraction, EmbedOptions, InteractionDataOptionsString, InteractionDataOptionsSubCommand, TextableChannel } from "eris";
 import { BaseCommand } from "../../../Structs/Command";
 import { MessageFlags } from "discord-api-types/v10";
-import { InteractionDataOptionsSubCommand, InteractionDataOptionsString, EmbedOptions } from "eris";
-import { EmbedBuilder } from "../../../utils/EmbedBuilder";
 import { userExists } from "../../../utils/mongo";
-import { refreshPersonalTokens } from "../../../utils/spotify";
-import { Util } from "../../../utils/Util";
+import { EmbedBuilder } from "../../../utils/EmbedBuilder";
+import { getToken, refreshPersonalTokens } from "../../../utils/spotify";
+import { occurrenceSort } from "../../../utils/sortOcc";
 
-export default class TopTracks extends BaseCommand {
-    name: string = "tracks"
-    description: string = "Get your top tracks on spotify"
+export default class TopArtists extends BaseCommand {
+    name: string = "genres"
+    description: string = "Get your top genres on Spotify"
     
     async execute(_: Client, ctx: CommandInteraction<TextableChannel>): Promise<void> {
         const userId = ctx.user?.id || ctx.member?.id || ctx.member?.user?.id
@@ -70,20 +69,47 @@ export default class TopTracks extends BaseCommand {
 
         const data = await request.json()
 
-        const embed: EmbedOptions = {
-            description: `**<:spotify:1264561367411720293> Your Top Tracks**\n${data.items.map((v: any, i: number) => `**${i + 1}.** [${v.name}](${v.external_urls.spotify}) [${Util.createTimeCode(v.duration_ms)}]`).join("\n")}`,
-            color: /** 0x1db954 **/0xffffff,
-            thumbnail: {
-                url: data.items[0].album.images[0].url
-            },
-            footer: {
-                icon_url: ctx.member?.user?.dynamicAvatarURL(),
-                text: `Requested by ${ctx.member?.user?.username}`
+        let artists = (data.items.map((v: { artists: { id: string }[] }) => v.artists.map(v => v.id).join(",")) as string[]).join(",")
+
+        if(artists.split(",").length > 50) artists = artists.split(",").slice(0, 50).join(",")
+
+        const token = await getToken()
+
+        const artistsData = await fetch(`https://api.spotify.com/v1/artists?ids=${artists}`, {
+            headers: {
+                Authorization: `Bearer ${token.accessToken}`
             }
+        })
+
+        if(!artistsData.ok) {
+            ctx.createFollowup({
+                embeds: [EmbedBuilder.failEmbed("Something went wrong")]
+            })
+
+            console.log(request)
+            return
         }
 
+        const genreData = await artistsData.json()
+
+        const genres = [].concat(...(genreData.artists.map((v: { genres: string[] }) => v.genres))) as string[]
+
+        const sortedGenres = occurrenceSort(genres).slice(0, 20).map((v, i) => `**${i + 1}.** ${v}`)
+
         ctx.createFollowup({
-            embeds: [embed]
+            embeds: [
+                {
+                    description: `**<:spotify:1264561367411720293> Your Top Genres**\n${sortedGenres.join("\n")}`,
+                    color: 0xffffff,
+                    thumbnail: {
+                        url: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/spotify-white-icon.png"
+                    },
+                    footer: {
+                        icon_url: ctx.member?.user?.dynamicAvatarURL(),
+                        text: `Requested by ${ctx.member?.user?.username}`
+                    }
+                }
+            ]
         })
     }
 }

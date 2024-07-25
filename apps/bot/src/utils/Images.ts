@@ -1,4 +1,4 @@
-import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 
 export interface SpotifyTrackOptions {
     title: string;
@@ -8,6 +8,8 @@ export interface SpotifyTrackOptions {
     album: string;
     progress?: number;
 }
+
+GlobalFonts.registerFromPath(`${__dirname}/fonts/opensans.ttf`, "sans")
 
 export class ImageGenerator {
     static async generateSpotfiyTrack(op: SpotifyTrackOptions) {

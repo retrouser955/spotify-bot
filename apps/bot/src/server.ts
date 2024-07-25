@@ -10,8 +10,8 @@ const PORT = process.env.NODE_ENV === "development" ?
     8080
 
 app.post("/user", async (req, res) => {
-    if(!req.headers.Authorization) return res.status(403).json({ message: "Forbidden" })
-    if(req.headers.Authorization !== process.env.AUTH_KEY) return res.status(403).json({ message: "Bad Auth Key" })
+    if(!req.headers.authorization) return res.status(403).json({ message: "Forbidden" })
+    if(req.headers.authorization !== process.env.AUTH_KEY) return res.status(403).json({ message: "Bad Auth Key" })
 
     const { discord, spotify } = req.body as { discord: any, spotify: any }
 

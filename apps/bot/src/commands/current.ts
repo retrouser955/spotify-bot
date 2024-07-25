@@ -101,6 +101,16 @@ export default class Current extends BaseCommand {
                             style: ButtonStyle.Link,
                             label: "Listen",
                             url: req.data.item.external_urls.spotify
+                        },
+                        {
+                            type: ComponentType.Button,
+                            style: ButtonStyle.Secondary,
+                            label: "Recommendations",
+                            emoji: {
+                               id: "1264562222353617077",
+                               name: "info"
+                            },
+                            custom_id: `musistats-recommendations-${req.data.item.id}`
                         }
                     ]
                 }

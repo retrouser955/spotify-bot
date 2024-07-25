@@ -68,7 +68,7 @@ export default class Recent extends BaseCommand {
 
         const { data } = axiosData
 
-        const descriptionString = `**<:spotify:1036122539384119306> Your recent tracks**\n${
+        const descriptionString = `**<:spotify:1264561367411720293> Your recent tracks**\n${
             data.items.map((v: any, i: number) => `**${i + 1}.** [${v.track.name}](${v.track.external_urls.spotify})`).join("\n")
         }`
 

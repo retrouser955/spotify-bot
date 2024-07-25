@@ -1,7 +1,6 @@
 import Eris, { ApplicationCommandOptions, Client, CommandInteraction, TextableChannel } from "eris";
 import { BaseCommand } from "../Structs/Command";
 import { ApplicationCommandOptionType, MessageFlags } from "discord-api-types/v10";
-import { User } from "../mongodb/schemas/User";
 import fs from "node:fs"
 import { EmbedBuilder } from "../utils/EmbedBuilder";
 
@@ -44,6 +43,20 @@ export default class TopTracks extends BaseCommand {
         {
             type: ApplicationCommandOptionType.Subcommand,
             name: "artists",
+            description: "Get the top artists of the user",
+            options: [
+                {
+                    type: ApplicationCommandOptionType.String,
+                    name: "period",
+                    description: "Amount of time to look back into",
+                    choices: this.subCommandChoices,
+                    required: true
+                }
+            ]
+        },
+        {
+            type: ApplicationCommandOptionType.Subcommand,
+            name: "genres",
             description: "Get the top artists of the user",
             options: [
                 {

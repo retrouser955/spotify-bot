@@ -3,7 +3,7 @@ import { EmbedOptions } from "eris";
 export class EmbedBuilder {
     static failEmbed(message: string): EmbedOptions {
         return {
-            description: `**<:error:1261296448021069885> Oh-no! Something went wrong...**\n${message}`,
+            description: `**<:no:1264562158465843200> Oh-no! Something went wrong...**\n${message}`,
             color: 0xff0019
         }
     }
@@ -19,7 +19,7 @@ export class EmbedBuilder {
 
     static successEmbed(message: string, image?: string): EmbedOptions {
         const embed: EmbedOptions = {
-            description: `**<:tick:1089371868420653066> Success!**\n${message}`,
+            description: `**<:tick:1264562539132620910> Success!**\n${message}`,
             color: 0x1db954
         }
 
@@ -33,7 +33,7 @@ export class EmbedBuilder {
     static infoEmbed(message: string): EmbedOptions {
         return {
             color: 0x2b2d31,
-            description: `**<:info:1261972242569498705> ${message}**`
+            description: `**<:info:1264562222353617077> ${message}**`
         }
     }
 
