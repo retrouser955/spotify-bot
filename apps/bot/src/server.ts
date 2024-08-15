@@ -9,6 +9,12 @@ const PORT = process.env.NODE_ENV === "development" ?
     4000 :
     8080
 
+app.get("/keepalive", async (req, res) => {
+    res.json({
+        alive: true
+    })
+})
+
 app.post("/user", async (req, res) => {
     if(!req.headers.authorization) return res.status(403).json({ message: "Forbidden" })
     if(req.headers.authorization !== process.env.AUTH_KEY) return res.status(403).json({ message: "Bad Auth Key" })
