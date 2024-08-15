@@ -7,7 +7,7 @@ app.use(express.json())
 
 const PORT = process.env.NODE_ENV === "development" ?
     4000 :
-    8080
+    process.env.PORT || 8080
 
 app.get("/keepalive", async (req, res) => {
     res.json({
