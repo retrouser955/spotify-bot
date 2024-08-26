@@ -25,7 +25,7 @@ export class BaseCommand {
             name: this.name,
             description: this.description,
             options: this.options,
-            integrationTypes: this.types.integrationTypes,
+            integration_types: this.types.integrationTypes,
             contexts: this.types.contexts
         }
     }

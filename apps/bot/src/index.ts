@@ -25,12 +25,7 @@ client.on("ready", async () => {
 
     if(!isCompleted) {
         for(let command of rawCommands) {
-            client.createCommand({
-                type: ApplicationCommandType.ChatInput,
-                name: command!.name,
-                description: command!.description,
-                options: command!.options ?? [],
-            })
+            client.createCommand(command!.toAPIJSON<false>())
         
             console.log(`LOADED COMMAND: ${command!.name}`)
         

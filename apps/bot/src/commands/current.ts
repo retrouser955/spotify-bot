@@ -16,13 +16,13 @@ export default class Current extends BaseCommand {
 
     types: ApplicationUserInstallabeTypes = {
         contexts: [
-            Constants.ApplicationCommandContextType.BOT_DM,
-            Constants.ApplicationCommandContextType.GUILD,
-            Constants.ApplicationCommandContextType.PRIVATE
+            Constants?.ApplicationCommandContextType?.BOT_DM || 1,
+            Constants?.ApplicationCommandContextType?.GUILD || 0,
+            Constants?.ApplicationCommandContextType?.PRIVATE || 2
         ],
         integrationTypes: [
-            Constants.ApplicationCommandIntegrationTypes.GUILD_INSTALL,
-            Constants.ApplicationCommandIntegrationTypes.USER_INSTALL
+            Constants?.ApplicationCommandIntegrationTypes?.GUILD_INSTALL || 0,
+            Constants?.ApplicationCommandIntegrationTypes?.USER_INSTALL || 1
         ]
     }
 
