@@ -1,5 +1,5 @@
-import { Client, CommandInteraction, TextableChannel } from "eris";
-import { BaseCommand } from "../Structs/Command";
+import { Client, CommandInteraction, Constants, TextableChannel } from "eris";
+import { ApplicationUserInstallabeTypes, BaseCommand } from "../Structs/Command";
 import { userExists } from "../utils/mongo";
 import { EmbedBuilder } from "../utils/EmbedBuilder";
 import { ButtonStyle, ComponentType, MessageFlags } from "discord-api-types/v10";
@@ -11,6 +11,18 @@ import { Util } from "../utils/Util";
 export default class Current extends BaseCommand {
     name: string = "current"
     description: string = "Get the now playing information of yourself"
+
+    types: ApplicationUserInstallabeTypes = {
+        contexts: [
+            Constants.ApplicationCommandContextType.BOT_DM,
+            Constants.ApplicationCommandContextType.GUILD,
+            Constants.ApplicationCommandContextType.PRIVATE
+        ],
+        integrationTypes: [
+            Constants.ApplicationCommandIntegrationTypes.GUILD_INSTALL,
+            Constants.ApplicationCommandIntegrationTypes.USER_INSTALL
+        ]
+    }
 
     async execute(_: Client, ctx: CommandInteraction<TextableChannel>): Promise<void> {
         const userId = ctx.user?.id || ctx.member?.id || ctx.member?.user?.id
