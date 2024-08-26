@@ -1,3 +1,5 @@
+// @ts-nocheck
+// ts ignore for now until the official version comes out
 import { Client, CommandInteraction, Constants, TextableChannel } from "eris";
 import { ApplicationUserInstallabeTypes, BaseCommand } from "../Structs/Command";
 import { userExists } from "../utils/mongo";

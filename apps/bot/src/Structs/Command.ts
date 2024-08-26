@@ -1,3 +1,5 @@
+// @ts-nocheck
+// ts ignore for now until the official version comes out
 import Eris, { Constants } from "eris";
 import type { ApplicationCommandCreateOptions } from "eris";
 
