@@ -798,7 +798,7 @@ __metadata:
     cross-env: "npm:^7.0.3"
     discord-api-types: "npm:^0.37.93"
     dotenv: "npm:^16.4.5"
-    eris: "github:retrouser955/eris"
+    eris: "https://github.com/retrouser955/eris"
     eris-collect: "npm:^1.1.1"
     express: "npm:^4.19.2"
     mongoose: "npm:^8.5.3"
@@ -1180,7 +1180,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eris@github:retrouser955/eris":
+"eris@https://github.com/retrouser955/eris":
   version: 0.17.2
   resolution: "eris@https://github.com/retrouser955/eris.git#commit=0c8a24a378cddd41bfe224e51a000ebb565c96cf"
   dependencies:
