@@ -798,7 +798,7 @@ __metadata:
     cross-env: "npm:^7.0.3"
     discord-api-types: "npm:^0.37.93"
     dotenv: "npm:^16.4.5"
-    eris: "https://github.com/retrouser955/eris"
+    eris: "github:retrouser955/eris"
     eris-collect: "npm:^1.1.1"
     express: "npm:^4.19.2"
     mongoose: "npm:^8.5.3"
@@ -1180,9 +1180,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eris@https://github.com/retrouser955/eris":
+"eris@github:retrouser955/eris":
   version: 0.17.2
-  resolution: "eris@https://github.com/retrouser955/eris.git#commit=0c8a24a378cddd41bfe224e51a000ebb565c96cf"
+  resolution: "eris@https://github.com/retrouser955/eris.git#commit=164dab6bf37cca0fa3fb68d166f989069eef0fb3"
   dependencies:
     opusscript: "npm:^0.0.8"
     tweetnacl: "npm:^1.0.3"
@@ -1192,7 +1192,7 @@ __metadata:
       optional: true
     tweetnacl:
       optional: true
-  checksum: 10c0/86d13ff7732aca6c569aa56adf5300d4dc6d5c12f50cfd09c32cb66365f2c9893f1842d05a7036cfc06a32c618d120b73192cda7bf922d0067385c6b1a90c841
+  checksum: 10c0/58b023dd025fce7ec49f95c04643b5c0b45b2f8c33cc2b110314c4da869144939f0203c901cc7cd61d2ac1f5289452151c6e323df25618447ed250c4daf77348
   languageName: node
   linkType: hard
 

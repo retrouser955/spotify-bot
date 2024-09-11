@@ -1,10 +1,11 @@
-import Eris, { ApplicationCommandOptions, Client, CommandInteraction, ComponentInteractionSelectMenuData, InteractionDataOptionsString, SelectMenuOptions } from "eris";
+import Eris, { ApplicationCommandOptions, Client, CommandInteraction, Constants, InteractionDataOptionsString, SelectMenuOptions } from "eris";
 import { BaseCommand } from "../Structs/Command";
 import { ApplicationCommandOptionType, ButtonStyle, ComponentType, InteractionType, MessageFlags } from "discord-api-types/v10";
 import { getTrack, search } from "../utils/spotify";
 import { EmbedBuilder } from "../utils/EmbedBuilder";
 import { awaitComponentInteractions } from "eris-collect"
 import { ImageGenerator } from "../utils/Images";
+import { ApplicationUserInstallabeTypes } from "../Structs/Command";
 import { Util } from "../utils/Util";
 
 export default class TrackCommand extends BaseCommand {
@@ -21,6 +22,18 @@ export default class TrackCommand extends BaseCommand {
             required: true
         }
     ]
+
+    types: ApplicationUserInstallabeTypes = {
+        contexts: [
+            Constants.ApplicationCommandContextType.BOT_DM,
+            Constants.ApplicationCommandContextType.GUILD,
+            Constants.ApplicationCommandContextType.PRIVATE
+        ],
+        integrationTypes: [
+            Constants.ApplicationCommandIntegrationTypes.GUILD_INSTALL,
+            Constants.ApplicationCommandIntegrationTypes.USER_INSTALL
+        ]
+    }
 
     async execute(client: Client, ctx: CommandInteraction<Eris.TextableChannel>): Promise<void> {
         const option = ctx.data.options!.at(0) as InteractionDataOptionsString

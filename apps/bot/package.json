@@ -7,7 +7,7 @@
     "axios": "^1.7.4",
     "discord-api-types": "^0.37.93",
     "dotenv": "^16.4.5",
-    "eris": "https://github.com/retrouser955/eris",
+    "eris": "github:retrouser955/eris",
     "eris-collect": "^1.1.1",
     "express": "^4.19.2",
     "mongoose": "^8.5.3"
